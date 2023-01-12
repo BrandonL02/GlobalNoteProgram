@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>EVO Note Center</title>
+		<link rel="stylesheet" href="styles.css">
+		<script src="myjs.js"></script>
+	</head>
+	<body>
+		
+		<div class="container" >
+			<h1>Notes Helper</h1>
+			
+			<div class="box">
+				
+				<input type="text" id="fname" name="fname" value="" placeholder="Name">
+				<br>
+				
+				
+				
+				<input type="text" id="DBA" name="DBA" value="" placeholder="DBA">
+				<br>
+				
+				
+				<input type="text" id="MID" name="MID" value="" placeholder="MID">
+				<br>
+				
+				
+				<input type="text" id="PHONE" name="PHONE" value="" placeholder="555-555-5555">
+				<br>
+				
+				<input type="text" id="Solution" name="Solution" value="" style = "width: 500px;" placeholder="INTEGRATION">
+				<br>
+				
+				<label for="Verified">Verified</label><br>
+				<input type="checkbox" id="Verified" name="Verified"><br>
+				<label for="Secured">Secured</label><br>
+				<input type="checkbox" id="Secured" name="Secured"><br>
+			</div>
+			
+			<h3>Secured By</h3>
+			<div class="securedBy">
+			
+				<label for="DOB">DOB</label><br>
+				<input class="secMethod" type="checkbox" id="DOB" name="DOB"><br>
+				
+				<label for="SSN">Last 4 of SSN</label><br>
+				<input class="secMethod" type="checkbox" id="SSN" name="SSN"><br>
+				
+				<label for="FEIN">Last 4 of FEIN</label><br>
+				<input class="secMethod" type="checkbox" id="FEIN" name="FEIN"><br>
+				
+				<label for="bankAcct">Last 4 of Bank Acct</label><br>
+				<input class="secMethod" type="checkbox" id="bankAcct" name="bankAcct"><br>
+				
+				<label for="bankAcct">Dealer</label><br>
+				<input class="secMethod" type="checkbox" id="linked Dealer acct to merch acct" name="bankAcct"><br><br>
+				
+			</div>
+			<br>
+			
+			<div class="row">
+			
+				
+				<textarea id="issue" name="issue" rows="10" cols="50" placeholder="Issue"></textarea>
+				<button class="copyBtn" id="copyissue" onclick="copy('issue')">Copy</button><br><br>
+				
+				<textarea id="template" name="template" rows="10" cols="50" placeholder="Template"></textarea>
+				<button class="copyBtn" id="copyTemplate" onclick="copy('template')">Copy</button><br>
+				
+			</div>
+			<br><br>
+			<div class="row">
+			
+				<textarea id="notes" name="notes" rows="10" cols="50" placeholder="Notes"></textarea>
+				<button class="copyBtn" id="copyNotes" onclick="copy('notes')">Copy</button><br><br>
+				
+				<textarea id="scrap" name="scrap" rows="10" cols="50" placeholder="Scrap"></textarea>
+				<button class="copyBtn" id="copyScrap" onclick="copy('scrap')">Copy</button><br><br>
+
+			</div>
+			
+			<br><br><br>
+			
+			<div class="goClear">
+				<button onclick="myFunc()">GO</button>
+				<button onclick="clearForm()">Clear</button><br>	
+			</div>
+			
+
+		</div>
+	</body>
+</html>

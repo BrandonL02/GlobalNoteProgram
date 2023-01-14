@@ -11,6 +11,7 @@ function myFunc(){
 	let Verified = document.querySelector('#Verified').checked;
 	let Secured = document.querySelector('#Secured').checked;
 	let Notes = document.getElementById('notes').value;
+	let Issue = document.getElementById('issue').value;
 	let secMethod = `Secured By: `;
 	let relation = isPopulated(document.getElementById('relation').value,'p','');
 	let agentId = isPopulated(document.getElementById('agentId').value,'p','');
@@ -39,15 +40,15 @@ function myFunc(){
 			}
 		}
 		
-		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified} and ${secMethod}\n${caseNum}\nIssue/Solution:\n`;
+		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified} and ${secMethod}\n${caseNum}\nIssue/Solution:\n${Issue}`;
 	}
 		
 	}else{
 		Secured=`Not Secured`
-		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified}\n${caseNum}\nIssue/Solution:\n`;
+		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified}\n${caseNum}\nIssue/Solution:\n${Issue}`;
 		
 	}
-	document.getElementById("template").value=`MID: ${MID}\nDBA: ${DBA}\nWHO: ${fname}${relation}\nINTEGRATION: ${Solution}\nIssue/SOLUTION:\n${notes}\nWhere you looked: \nExpected results: `;
+	document.getElementById("template").value=`MID: ${MID}\nDBA: ${DBA}\nWHO: ${fname}${relation}\nINTEGRATION: ${Solution}\nIssue/SOLUTION:\n${Issue}\nWhere you looked: \nExpected results: `;
 }
 
 function getAlElems(){
@@ -152,5 +153,3 @@ function copyClicked(e){
 	navigator.clipboard.writeText(e)
 	document.getElementById(y).style.display = "flex";
 }
-
-

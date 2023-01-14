@@ -357,3 +357,13 @@ label{
 #showLog-label:hover{
 	
 }
+
+.RequestTemplates {
+	height: 200%;
+	text-align: center;
+	font-weight: bold;
+	background: rgba(255, 255, 255,0.5);
+	position: relative;
+	right:40px;
+	width: 110%;
+}

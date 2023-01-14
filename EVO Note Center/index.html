@@ -126,6 +126,19 @@
 					</div>
 				</div>	
 			
+				<br><br><br>
+				
+				
+				<div class="row">
+				
+					<textarea id="issue" name="issue" rows="10" cols="50" placeholder="Issue/troubleshooting/solution"></textarea>
+					<button class="copyBtn" id="copyNotes" onclick="copy('notes')">Copy</button><br><br>
+					
+					<textarea id="template" name="template" rows="10" cols="50" placeholder="Press GO to generate template"></textarea>
+					<button class="copyBtn" id="copyTemplate" onclick="copy('template')">Copy</button><br>
+
+				</div>
+				
 				<br>	
 				
 				
@@ -134,11 +147,26 @@
 					<textarea id="notes" name="notes" rows="10" cols="50" placeholder="Press GO to generate notes"></textarea>
 					<button class="copyBtn" id="copyNotes" onclick="copy('notes')">Copy</button><br><br>
 					
-					<textarea id="template" name="template" rows="10" cols="50" placeholder="Press GO to generate template"></textarea>
-					<button class="copyBtn" id="copyTemplate" onclick="copy('template')">Copy</button><br>
-
 				</div>
 				
+				<br>
+				
+				<div class="row">
+					<div class="drop-down">
+						<select name="RequestTemplates" id="RequestTemplates" class="RequestTemplates">
+							<option value="Case Notes">Case Notes</option>
+							<option value="Rekeys">Rekey Request Form</option>
+							<option value="Add TID">File Build - Add Terminal</option>
+							<option value="Add TID (MM)">File Build - Add Terminal(Multi-Merchant)</option>
+							<option value="Change TID">File Build - Change Terminal</option>
+							<option value="Change DC File">File Build - Change Datacap File </option>
+							<option value="Rekey Add TID">File Build - Rekey Add Terminal </option>
+							<option value="Change DC File">File Build - Change Datacap File </option>
+						</select>
+					</div>
+				</div>
+				
+				<br><br>
 				
 				<div class="goClear">
 					<button class="copyBtn bottom-button" onclick="myFunc()">GO</button>

@@ -1,7 +1,7 @@
 
 
 
-function myFunc(){
+function main(){
 	let fname = isPopulated(document.getElementById('fname').value,'','');
 	let DBA = document.getElementById('DBA').value;
 	let MID = document.getElementById('MID').value;
@@ -21,35 +21,16 @@ function myFunc(){
 	}else{
 		Verified=`Not Verified`
 	}
-	if(Secured==true){
-		Secured = '';
-		let elems = document.querySelectorAll(".secMethod");
-		let agXferSelection = document.getElementById("agents").value;
 	
-		for(let i = 0; i < elems.length; i++){
-		if(elems[i].checked==true){
-			secMethod += elems[i].id + " "
-			if(elems[i].id == "agXfer"){
-				if(agXferSelection){
-					secMethod = `Secured by transfer from ${agXferSelection}`
-				}else{
-					agXferSelection = document.getElementById('agentName').value;
-					secMethod = `Secured by transfer from ${agXferSelection}`
-				}
-				
-			}
-		}
-		
-		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified} and ${secMethod}\n${caseNum}\nIssue/Solution:\n${Issue}`;
-	}
-		
+	if(Secured==true){
+		Secured =`Secured`
 	}else{
 		Secured=`Not Secured`
-		document.getElementById("notes").value=`${fname}${relation}${agentId} ${Verified}\n${caseNum}\nIssue/Solution:\n${Issue}`;
-		
 	}
-	document.getElementById("template").value=`MID: ${MID}\nDBA: ${DBA}\nWHO: ${fname}${relation}\nINTEGRATION: ${Solution}\nIssue/SOLUTION:\n${Issue}\nWhere you looked: \nExpected results: `;
+	
+	document.getElementById("template").value=`MID: ${MID}\nDBA: ${DBA}\nWHO: ${fname}${relation}${Verified}/${Secured}\nINTEGRATION: ${Solution}\nIssue/SOLUTION:\n${Issue}\nWhere you looked: \nExpected results: `;
 }
+
 
 function getAlElems(){
 	return document.querySelectorAll("input,textarea")

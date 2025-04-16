@@ -2,10 +2,10 @@
 - A simple and efficient web tool for Global Payments technical support representatives to document inbound calls quickly and consistently.
 
 🧰 Made with:
-HTML, CSS, and Javascript
+- HTML, CSS, and Javascript
 
 🔍 Overview
-This tool is designed to streamline case note-taking during inbound technical support calls. It ensures a standardized structure and allows quick copying of formatted case notes into CRM systems.
+- This tool is designed to streamline case note-taking during inbound technical support calls. It ensures a standardized structure and allows quick copying of formatted case notes into CRM systems.
 
 Key features:
 

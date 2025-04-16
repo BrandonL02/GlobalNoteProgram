@@ -1,17 +1,17 @@
-📞  **Case Notes Tool**
+# Case Notes Tool 
 - A simple and efficient web tool for Global Payments technical support representatives to document inbound calls quickly and consistently.
 
 
-🧰 #Made with:
+### Made with:
 - HTML, CSS, and Javascript
 
 ---
 
-🔍 ## Overview
+## Overview 🔍
 - This tool is designed to streamline case note-taking during inbound technical support calls. It ensures a standardized structure and allows quick copying of formatted case notes into CRM systems.
 
 
-Key features:
+### Key features:
 
 - Input fields for merchant, caller, and technical details
 
@@ -22,7 +22,7 @@ Key features:
 ---
 
 
-📒 ##Usage:
+## Usage 📒:
 
 1. Open the .html file in a browser.
 
@@ -35,7 +35,7 @@ Key features:
 5. Click Copy to Clipboard to paste into the designated CRM account.
 
 
-📸 Demo
+## Demo 📸
 
 
   !['Example usage](https://github.com/BrandonL02/Global-Note-Program/blob/08e1f47a2bfa4c34b2ce15e2dd576c450d8288bf/example_usage.png)

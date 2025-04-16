@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Tech Support Note Taker - Streamlining call notes for EVO Payments">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Case Notes</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+            background-color: #003B71;
+            color: #333333;
+        }
+
+        header {
+            background-color: #ffffff;
+            color: #000112;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 34px;
+            color: #003B71;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        menu {
+            display: inline;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            padding: 20px;
+            width: 48%;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #062b48;
+            color: #ecf0f1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #197dc0;
+        }
+
+        #notes {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #dcdcdc;
+            border-radius: 5px;
+        }
+
+        .red-text {
+            color: rgb(0, 0, 255);
+        }
+    </style>
+
+    <script>
+         function showNotes() {
+        var notesFields = [
+            { label: "MID", id: "MID" },
+            { label: "Region", id: "Region", type: "radio" },
+            { label: "DBA", id: "DBA" },
+            { label: "Caller", id: "person" },
+            { label: "Relationship", id: "relation" },
+            { label: "Relationship", id: "RelOther" },
+            { label: "Call Back #", id: "cb" },
+            { label: "Equipment", id: "equip" },
+            { label: "Equipment", id: "equipOther" },
+            { label: "TID", id: "TID" },
+            { label: "Serial Number", id: "SN" },
+            { label: "Connection", id: "con" },
+            { label: "Front End", id: "FE" },
+            { label: "Front End", id: "feOther" },
+            { label: "Verified and Secured", id: "verifiedSecured" },
+            { label: "Case ID Provided", id: "caseIDProvided", type: "radio" },
+            { label: "Reason", id: "Reason" },
+            { label: "Actions", id: "Actions" }
+        ];
+
+        var personValue = getValue("person");
+        var relationValue = getValue("relation");
+        var relOtherValue = getValue("RelOther");
+
+        // Use RelOther if relation is empty, "N/A", or "Other"
+        if (!relationValue || relationValue === "N/A" || relationValue === "Other") {
+            relationValue = relOtherValue;
+        }
+
+        var notes = notesFields
+            .map(function (field) {
+                var value = getValue(field.id, field.type);
+
+                if (field.id === "person") {
+                    return personValue && relationValue && personValue !== "N/A" && relationValue !== "N/A" && relationValue !== "Other" 
+                        ? "<br><strong>Caller:</strong> " + personValue + " (" + relationValue + ")" 
+                        : personValue && personValue !== "N/A" && personValue !== "Other"
+                        ? "<br><strong>Caller:</strong> " + personValue
+                        : "";
+                }
+                
+                if (field.id === "relation" || field.id === "RelOther") {
+                    return ""; // Skip "relation" and "RelOther" since they are included in "person"
+                }
+
+                return value && value !== "N/A" && value !== "Other" 
+                    ? "<br><strong>" + field.label + ":</strong> " + value 
+                    : "";
+            })
+            .join('');
+
+        document.getElementById("notes").innerHTML = notes;
+		}
+
+        function clearForm() {
+            document.getElementById("form").reset();
+            document.getElementById("notes").innerHTML = "";
+            hideRelOther();
+            hideEquipOther();
+            hideFeOther();
+        }
+
+        function getValue(id, type) {
+        if (type === "radio") {
+            var radios = document.getElementsByName(id); // Get all radio buttons with this name
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    return radios[i].value; // Return the selected value
+                }
+            }
+            return ""; // If no selection, return default message
+        }
+
+        var element = document.getElementById(id);
+        return element ? element.value : "";
+        }
+
+
+
+        function checkOther(select, inputId) {
+            var inputField = document.getElementById(inputId);
+
+            if (select.value === "Other") {
+                inputField.style.display = "block";
+            } else {
+                inputField.style.display = "none";
+            }
+        }
+
+        function hideRelOther() {
+            var relationInput = document.getElementById("RelOther");
+            relationInput && (relationInput.style.display = "none");
+        }
+
+        function hideEquipOther() {
+            var equipInput = document.getElementById("equipOther");
+            equipInput && (equipInput.style.display = "none");
+        }
+        
+
+        function hideFeOther() {
+            var feInput = document.getElementById("feOther");
+            feInput && (feInput.style.display = "none");
+        }
+
+        function copyToClipboard() {
+            var notesText = document.getElementById("notes").innerText;
+
+            var tempTextarea = document.createElement("textarea");
+            tempTextarea.value = notesText;
+
+            document.body.appendChild(tempTextarea);
+
+            tempTextarea.select();
+            document.execCommand("copy");
+
+            document.body.removeChild(tempTextarea);
+
+            alert("Notes copied to clipboard!");
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Global Payments Case Notes Tool</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form id="form">
+                <label for="MID">Merchant ID:</label>
+                <input id="MID" type="text" maxlength="20">
+
+                <label for="Region">Region:</label>
+                    <div style="display: flex; gap: 10%; color: #003B71; font-style: italic; text-align: center;">
+						<label>
+                            <input type="radio" name="Region" value="001"> 001 (Ecomm)
+                        </label>
+                        <label>
+                            <input type="radio" name="Region" value="002"> 002 (ISV)
+                        </label>
+                        <label>
+                            <input type="radio" name="Region" value="004"> 004 (Direct)
+                        </label>
+						<label>
+                            <input type="radio" name="Region" value="008"> 008 (BancCard)
+                        </label>
+                        <label>
+                            <input type="radio" name="Region" value="010"> 010 (Epos)
+                        </label>
+                    </div>
+
+                <label for="DBA">DBA:</label>
+                <input id="DBA" type="text" maxlength="40">
+
+                <label for="person">Caller's Name:</label>
+                <input id="person" type="text" maxlength="40">
+
+                <label for="relation">Relationship to Business:</label>
+                <select id="relation" onchange="checkOther(this, 'RelOther')">
+                    <option value="N/A">N/A</option>
+                    <option value="Dealer">Dealer</option>
+                    <option value="Owner">Owner</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Employee">Employee</option>
+                    <option value="Bookkeeper">Bookkeeper</option>
+                    <option value="Other">Other</option>
+                </select>
+                
+                <input id="RelOther" type="text" style="display: none;" placeholder="Enter relation to business">
+				
+				<label for="verifiedSecured">Verified and Secured:</label>
+				<select id="verifiedSecured">
+					<option value="N/A">N/A</option>
+                    <option value="Yes - Dealer ID">Yes - Dealer ID</option>
+					<option value="Yes - Birthday & Social">Yes - Birthday & Social</option>
+					<option value="Yes - Tax ID">Yes - Tax ID</option>
+					<option value="Yes - Last four of Bank Account">Yes - Last four of Bank Account</option>
+				</select>
+
+                <label for="cb">Call Back #:</label>
+                <input id="cb" type="text" maxlength="40">
+
+                <label for="equip">Equipment:</label>
+                <select id="equip" onchange="checkOther(this, 'equipOther')">
+                    <option value="N/A">N/A</option>
+					<option value="Chipper 2X BT">Chipper 2X BT</option>
+                    <option value="Dejavoo Z8 (Eth/Wifi)">Dejavoo Z8 (Eth/Wifi)</option>
+					<option value="Dejavoo Z8 (Eth/Wifi) / Dejavoo Z3">Dejavoo Z8 (Eth/Wifi) / Dejavoo Z3</option>
+					<option value="Dejavoo Z8 (Eth/Wifi) / Dejavoo Z6">Dejavoo Z8 (Eth/Wifi) / Dejavoo Z6</option>
+                    <option value="Dejavoo Z9 (Wifi)">Dejavoo Z9 (Wifi/4G)</option>
+					<option value="Dejavoo Z11 (Eth/Wifi)">Dejavoo Z11 (Eth/Wifi)</option>
+					<option value="Dejavoo Z11 (Eth/Wifi) / Dejavoo Z3">Dejavoo Z11 (Eth/Wifi) / Dejavoo Z3</option>
+					<option value="Dejavoo Z11 (Eth/Wifi) / Dejavoo Z6">Dejavoo Z11 (Eth/Wifi) / Dejavoo Z6</option>
+                    <option value="Ingenico Desk 3500">Ingenico Desk 3500</option>
+                    <option value="Ingenico Desk 5000">Ingenico Desk 5000</option>
+                    <option value="Nexgo N5S (4G/Wifi)">Nexgo N5S (4G/Wifi)</option>                 
+                    <option value="Pax A77 (Wifi/BT) No Printer">Pax A77 (Wifi/BT) No Printer</option>
+					<option value="Pax A80S">Pax A80S</option>
+					<option value="Pax A920 (4G/Wifi)">Pax A920 (4G/Wifi)</option>
+					<option value="Pax A920 Pro (4G/Wifi)">Pax A920 Pro (4G/Wifi)</option>
+					<option value="Verifone VX520 (Obsolete)">Verifone VX520 (Obsolete)</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input id="equipOther" type="text" style="display: none;" placeholder="Enter other equipment">
+
+                <label for="TID">TID:</label>
+                <input id="TID" type="text" maxlength="40">
+				
+				<label for="SN">Serial Number:</label>
+                <input id="SN" type="text" maxlength="40">
+
+                <label for="con">Connection:</label>
+                <select id="con">
+                    <option value="N/A">N/A</option>
+                    <option value="Dial">Dial</option>
+                    <option value="Eth">Eth</option>
+                    <option value="GPRS">GPRS</option>
+                    <option value="WiFi">WiFi</option>
+                </select>
+
+                <label for="FE">Front End:</label>
+                <select id="FE" onchange="checkOther(this, 'feOther')">
+                    <option value="N/A">N/A</option>
+                    <option value="Global">Global</option>
+                    <option value="TPS">TPS/NGTrans</option>
+                    <option value="TSYS">TSYS</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input id="feOther" type="text" style="display: none;" placeholder="Enter other front end">
+
+				<label for="caseIDProvided">Case ID Provided:</label>
+                <div style="display: inline-flex; gap: 20%; color: #003B71; font-style: italic; text-align: center;">
+                    <label style="display: inline-flex;text-align: center;"><input type="radio" name="caseIDProvided" value="N/A">N/A</label>
+                    <label style="display: inline-flex;text-align: center;"><input type="radio" name="caseIDProvided" value="Yes">Yes</label>
+                    <label style="display: inline-flex;text-align: center;"><input type="radio" name="caseIDProvided" value="No">No</label>
+                </div>
+
+
+                <label for="Reason">Reason for Call:</label>
+                <textarea id="Reason" rows="4" cols="50"></textarea>
+
+                <label for="Actions">Actions Taken:</label>
+                <textarea id="Actions" rows="4" cols="50"></textarea>
+
+                <button type="button" onclick="showNotes()">Populate Notes</button>
+                <button type="button" onclick="clearForm()">Clear Form</button>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Notes:</h2>
+            <div id="notes"></div>
+            <button id="copyButton" onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </main>
+</body>
+
+</html>

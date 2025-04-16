@@ -28,7 +28,7 @@ Key features:
 
 2. Fill in the call details using the form.
 
-3 . Click Populate Notes to generate the formatted case notes.
+3. Click Populate Notes to generate the formatted case notes.
 
 4. Review or edit the notes on the right.
 

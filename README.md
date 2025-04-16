@@ -34,6 +34,7 @@
 
 5. Click Copy to Clipboard to paste into the designated CRM account.
 
+---
 
 ## Demo 📸
 

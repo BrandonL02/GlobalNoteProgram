@@ -22,7 +22,7 @@
 ---
 
 
-## Usage 📒:
+## Usage 📒
 
 1. Open the .html file in a browser.
 

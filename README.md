@@ -1,5 +1,5 @@
 📞 Case Notes Tool
-A simple and efficient web tool for Global Payments technical support representatives to document inbound calls quickly and consistently.
+- A simple and efficient web tool for Global Payments technical support representatives to document inbound calls quickly and consistently.
 
 🧰 Made with:
 HTML, CSS, and Javascript

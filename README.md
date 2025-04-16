@@ -30,4 +30,4 @@ Key features:
 
 📸 Demo
 
-  !['Example usage]()
+  !['Example usage](https://github.com/BrandonL02/Global-Note-Program/blob/08e1f47a2bfa4c34b2ce15e2dd576c450d8288bf/example_usage.png)
